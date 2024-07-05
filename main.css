@@ -138,7 +138,7 @@ body::after {
 .mark {
     background-color: rgba(255, 255, 255, 0.2); /* Set transparent background */
     border: none; /* Remove default border */
-    padding: 20px; /* Adjust padding */
+    padding: 5px; /* Adjust padding */
     width: 90%; /* Adjust width */
     height: 5vh; /* Adjust height */
     border-radius: 0px; /* Apply border radius */
