@@ -8,24 +8,30 @@
     <title>Zuj Grades</title>
     <link rel="stylesheet" href="main.css">
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Arabic:wght@600&display=swap" rel="stylesheet">
+    <style>
+        .button {
+            position: relative;
+            display: inline-block;
+            color: rgb(0, 0, 0);
+            padding: 10px 22px;
+            margin-top: 30px;
+            background: rgba(40, 250, 29, 0.589);
+            border-radius: 20px;
+            font-weight: bold;
+            transition: 1s ease;
+        }
+        #result {
+            margin-top: 30px;
+            font-size: 22px;
+            font-weight: bold;
+            color: aliceblue;
+        }
+        .mark-input {
+            margin-bottom: 10px;
+        }
+    </style>
 </head>
-
-
-
-
-
-
-
-
-
 <body>
-       
-  
-
-
-
-
-
     <div class="container">
         <div class="card">
             <div class="content">
@@ -48,7 +54,8 @@
                     </div>
                 </div>
                 <button onclick="addMarkInput()">Add More Marks</button>
-                <a href="#"><input type="button" class="button" name="" id="" value="Get Result" onclick="calculate()" style="background: transparent; border: none; font-weight: bold;"></a>
+                <input type="button" class="button" name="" id="" value="Get Result" onclick="calculate()">
+                <div id="result"></div>
             </div>
         </div>
     </div>
@@ -56,11 +63,15 @@
     <script>
         function addMarkInput() {
             const container = document.getElementById('marks-container');
-            const markCount = container.getElementsByClassName('mark-input').length + 1;
+            const markCount = container.getElementsByClassName('mark-input').length;
+            if (markCount >= 8) {
+                alert('You can only add up to 8 marks.');
+                return;
+            }
             const newMarkInput = document.createElement('div');
             newMarkInput.className = 'mark-input';
             newMarkInput.innerHTML = `
-                <h3 class="container-header">Subject ${markCount}</h3>
+                <h3 class="container-header">Subject ${markCount + 1}</h3>
                 <input type="text" class="mark" style="width: 90%; height: 5vh; border-radius: 5px; text-align: center; margin-top: 10px; box-shadow: 1px 2px 3px 2px black; margin-bottom: 10px;">
             `;
             container.appendChild(newMarkInput);
@@ -70,13 +81,17 @@
             const marks = document.getElementsByClassName('mark');
             let total = 0;
             let count = 0;
+            let markDetails = '';
+
             for (let i = 0; i < marks.length; i++) {
                 let mark = parseInt(marks[i].value) || 0;
                 total += mark;
                 count++;
+                markDetails += `Subject ${i + 1}: ${mark}<br>`;
             }
 
             let average = total / count;
+            average = average.toFixed(2);
 
             let grade;
             if (average >= 80) {
@@ -95,7 +110,11 @@
                 grade = "F";
             }
 
-            alert("Obtained mark: " + average + " and Grade: " + grade);
+            const resultDiv = document.getElementById('result');
+            resultDiv.innerHTML = `
+                <p>Obtained Marks: ${average}</p>
+                <p>Grade: ${grade}</p>
+            `;
         }
     </script>
 </body>
