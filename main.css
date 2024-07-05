@@ -139,8 +139,8 @@ body::after {
     background-color: rgba(255, 255, 255, 0.2); /* Set transparent background */
     border: none; /* Remove default border */
     padding: 5px; /* Adjust padding */
-    width: 90%; /* Adjust width */
-    height: 5vh; /* Adjust height */
+    width: 100%; /* Adjust width */
+    height: 10vh; /* Adjust height */
     border-radius: 0px; /* Apply border radius */
     text-align: center; /* Center text */
     margin-top: 10px; /* Adjust margin */
