@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="Omar Zayed">
+    <link rel="icon" type="image/png" href="https://play-lh.googleusercontent.com/9ib-31SoMgC9xiePLm905chGl2aPjCpqjmPo_EMehHG-lhmdDL0b6hMPX7OhJjvMWeU"/>
+    <title>Zuj Grades</title>
+    <link rel="stylesheet" href="main.css">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Arabic:wght@600&display=swap" rel="stylesheet">
+</head>
+
+
+
+
+
+
+
+
+
+<body>
+       
+  
+
+
+
+
+
+    <div class="container">
+        <div class="card">
+            <div class="content">
+                <div class="about-img">
+                    <img src="https://play-lh.googleusercontent.com/9ib-31SoMgC9xiePLm905chGl2aPjCpqjmPo_EMehHG-lhmdDL0b6hMPX7OhJjvMWeU" class="about-img" width="200" height="200" alt="About Image">
+                </div>  
+                <h2>ㅤاحسب معدلكㅤ</h2>
+                <div id="marks-container">
+                    <div class="mark-input">
+                        <h3 class="container-header">Subject 1</h3>
+                        <input type="text" class="mark" style="width: 90%; height: 5vh; border-radius: 5px; text-align: center; margin-top: 10px; box-shadow: 1px 2px 3px 2px black; margin-bottom: 10px;">
+                    </div>
+                    <div class="mark-input">
+                        <h3 class="container-header">Subject 2</h3>
+                        <input type="text" class="mark" style="width: 90%; height: 5vh; border-radius: 5px; text-align: center; margin-top: 10px; box-shadow: 1px 2px 3px 2px black; margin-bottom: 10px;">
+                    </div>
+                    <div class="mark-input">
+                        <h3 class="container-header">Subject 3</h3>
+                        <input type="text" class="mark" style="width: 90%; height: 5vh; border-radius: 5px; text-align: center; margin-top: 10px; box-shadow: 1px 2px 3px 2px black; margin-bottom: 10px;">
+                    </div>
+                </div>
+                <button onclick="addMarkInput()">Add More Marks</button>
+                <a href="#"><input type="button" class="button" name="" id="" value="Get Result" onclick="calculate()" style="background: transparent; border: none; font-weight: bold;"></a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function addMarkInput() {
+            const container = document.getElementById('marks-container');
+            const markCount = container.getElementsByClassName('mark-input').length + 1;
+            const newMarkInput = document.createElement('div');
+            newMarkInput.className = 'mark-input';
+            newMarkInput.innerHTML = `
+                <h3 class="container-header">Subject ${markCount}</h3>
+                <input type="text" class="mark" style="width: 90%; height: 5vh; border-radius: 5px; text-align: center; margin-top: 10px; box-shadow: 1px 2px 3px 2px black; margin-bottom: 10px;">
+            `;
+            container.appendChild(newMarkInput);
+        }
+
+        function calculate() {
+            const marks = document.getElementsByClassName('mark');
+            let total = 0;
+            let count = 0;
+            for (let i = 0; i < marks.length; i++) {
+                let mark = parseInt(marks[i].value) || 0;
+                total += mark;
+                count++;
+            }
+
+            let average = total / count;
+
+            let grade;
+            if (average >= 80) {
+                grade = "A+";
+            } else if (average >= 70) {
+                grade = "A";
+            } else if (average >= 60) {
+                grade = "A-";
+            } else if (average >= 50) {
+                grade = "B";
+            } else if (average >= 40) {
+                grade = "C";
+            } else if (average >= 33) {
+                grade = "D";
+            } else {
+                grade = "F";
+            }
+
+            alert("Obtained mark: " + average + " and Grade: " + grade);
+        }
+    </script>
+</body>
+</html>
